@@ -1,0 +1,681 @@
+
+Fatbin elf code:
+================
+arch = sm_80
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_80
+code version = [7,2]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.2
+.target sm_80
+.address_size 64
+
+
+
+
+
+
+
+
+
+
+
+
+.visible .entry _Z12bisectKernelPfS_jS_S_PjS0_ffjjf(
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_0,
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_1,
+.param .u32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_2,
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_3,
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_4,
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_5,
+.param .u64 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_6,
+.param .f32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_7,
+.param .f32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_8,
+.param .u32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_9,
+.param .u32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_10,
+.param .f32 _Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_11
+)
+{
+.reg .pred %p<63>;
+.reg .b16 %rs<12>;
+.reg .f32 %f<123>;
+.reg .b32 %r<174>;
+.reg .f64 %fd<13>;
+.reg .b64 %rd<17>;
+
+	.shared .align 4 .b8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE6s_left[2048];
+
+	.shared .align 4 .b8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE7s_right[2048];
+
+	.shared .align 4 .b8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE12s_left_count[2048];
+
+	.shared .align 4 .b8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE13s_right_count[2048];
+
+	.shared .align 4 .b8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE17s_compaction_list[2052];
+
+	.shared .align 4 .u8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk;
+
+	.shared .align 4 .u8 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE21all_threads_converged;
+
+	.shared .align 4 .u32 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active;
+
+	.shared .align 4 .u32 _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE22num_threads_compaction;
+
+ld.param.u64 %rd6, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_0];
+ld.param.u64 %rd7, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_1];
+ld.param.u32 %r53, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_2];
+ld.param.u64 %rd8, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_3];
+ld.param.u64 %rd9, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_5];
+ld.param.f32 %f23, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_7];
+ld.param.f32 %f24, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_8];
+ld.param.u32 %r54, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_9];
+ld.param.u32 %r55, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_10];
+ld.param.f32 %f25, [_Z12bisectKernelPfS_jS_S_PjS0_ffjjf_param_11];
+mov.u32 %r1, %tid.x;
+shl.b32 %r56, %r1, 2;
+mov.u32 %r57, _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE17s_compaction_list;
+add.s32 %r2, %r57, %r56;
+mov.u32 %r157, 0;
+st.shared.u32 [%r2], %r157;
+mov.u32 %r59, _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE6s_left;
+add.s32 %r3, %r59, %r56;
+st.shared.u32 [%r3], %r157;
+mov.u32 %r60, _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE7s_right;
+add.s32 %r4, %r60, %r56;
+st.shared.u32 [%r4], %r157;
+mov.u32 %r61, _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE12s_left_count;
+add.s32 %r5, %r61, %r56;
+st.shared.u32 [%r5], %r157;
+mov.u32 %r62, _ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE13s_right_count;
+add.s32 %r6, %r62, %r56;
+st.shared.u32 [%r6], %r157;
+bar.sync 0;
+setp.ne.s32 %p1, %r1, 0;
+@%p1 bra LBB0_2;
+
+st.shared.f32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE6s_left], %f23;
+st.shared.f32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE7s_right], %f24;
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE12s_left_count], %r54;
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE13s_right_count], %r55;
+mov.u16 %rs1, 0;
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk], %rs1;
+mov.u32 %r63, 1;
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active], %r63;
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE22num_threads_compaction], %r63;
+
+LBB0_2:
+cvt.u64.u32 %rd1, %r1;
+cvta.to.global.u64 %rd10, %rd6;
+mul.wide.u32 %rd11, %r1, 4;
+add.s64 %rd2, %rd10, %rd11;
+cvta.to.global.u64 %rd12, %rd7;
+add.s64 %rd13, %rd12, %rd11;
+add.s64 %rd3, %rd13, -4;
+shl.b32 %r66, %r1, 1;
+or.b32 %r7, %r66, 1;
+add.s32 %r8, %r1, 1;
+add.s32 %r9, %r53, -1;
+and.b32 %r10, %r53, 3;
+sub.s32 %r11, %r53, %r10;
+cvta.to.global.u64 %rd4, %rd8;
+cvta.to.global.u64 %rd5, %rd9;
+mov.f32 %f115, 0f00000000;
+mov.u16 %rs2, 1;
+mov.u16 %rs4, 0;
+setp.ge.u32 %p9, %r1, %r53;
+setp.eq.s32 %p13, %r53, 0;
+mov.f64 %fd11, 0d38654484932D2E72;
+setp.lt.u32 %p15, %r9, 3;
+mov.f32 %f116, %f115;
+mov.u32 %r158, %r157;
+mov.f32 %f117, %f115;
+bra.uni LBB0_3;
+
+LBB0_52:
+bar.sync 0;
+
+LBB0_3:
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE21all_threads_converged], %rs2;
+bar.sync 0;
+ld.shared.u32 %r67, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active];
+setp.ge.u32 %p2, %r1, %r67;
+@%p2 bra LBB0_8;
+
+ld.shared.f32 %f115, [%r3];
+ld.shared.u32 %r157, [%r5];
+ld.shared.u32 %r158, [%r6];
+ld.shared.f32 %f116, [%r4];
+setp.neu.f32 %p3, %f115, %f116;
+@%p3 bra LBB0_7;
+bra.uni LBB0_5;
+
+LBB0_7:
+setp.lt.f32 %p5, %f115, 0f00000000;
+selp.f32 %f29, 0fBF800000, 0f3F800000, %p5;
+setp.lt.f32 %p6, %f116, 0f00000000;
+selp.f32 %f30, 0fBF800000, 0f3F800000, %p6;
+setp.eq.f32 %p7, %f29, %f30;
+sub.f32 %f31, %f116, %f115;
+fma.rn.f32 %f32, %f31, 0f3F000000, %f115;
+add.f32 %f33, %f115, %f116;
+mul.f32 %f34, %f33, 0f3F000000;
+selp.f32 %f117, %f32, %f34, %p7;
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE21all_threads_converged], %rs4;
+bra.uni LBB0_8;
+
+LBB0_5:
+sub.s32 %r68, %r158, %r157;
+setp.lt.u32 %p4, %r68, 2;
+@%p4 bra LBB0_8;
+
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE21all_threads_converged], %rs4;
+
+LBB0_8:
+bar.sync 0;
+ld.shared.u16 %rs5, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE21all_threads_converged];
+and.b16 %rs6, %rs5, 1;
+setp.eq.b16 %p8, %rs6, 1;
+@%p8 bra LBB0_53;
+
+bar.sync 0;
+ld.shared.u32 %r18, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active];
+bar.sync 0;
+@%p9 bra LBB0_11;
+
+ld.global.f32 %f35, [%rd2];
+st.shared.f32 [%r3], %f35;
+ld.global.f32 %f36, [%rd3];
+st.shared.f32 [%r4], %f36;
+
+LBB0_11:
+setp.eq.f32 %p10, %f115, %f116;
+bar.sync 0;
+setp.ge.u32 %p11, %r1, %r18;
+or.pred %p12, %p10, %p11;
+mov.u32 %r167, 0;
+or.pred %p14, %p13, %p12;
+mov.u32 %r165, %r167;
+@%p14 bra LBB0_19;
+
+mov.f32 %f119, 0f3F800000;
+mov.u32 %r163, 0;
+mov.u32 %r165, %r163;
+@%p15 bra LBB0_15;
+
+mov.f32 %f119, 0f3F800000;
+mov.u32 %r163, 0;
+mov.u32 %r165, %r163;
+mov.u32 %r161, %r11;
+
+LBB0_14:
+shl.b32 %r75, %r163, 2;
+add.s32 %r77, %r59, %r75;
+ld.shared.f32 %f39, [%r77];
+sub.f32 %f40, %f39, %f117;
+add.s32 %r79, %r60, %r75;
+ld.shared.f32 %f41, [%r79];
+mul.f32 %f42, %f41, %f41;
+div.rn.f32 %f43, %f42, %f119;
+sub.f32 %f44, %f40, %f43;
+setp.lt.f32 %p16, %f44, 0f00000000;
+selp.u32 %r80, 1, 0, %p16;
+add.s32 %r81, %r165, %r80;
+ld.shared.f32 %f45, [%r77+4];
+sub.f32 %f46, %f45, %f117;
+ld.shared.f32 %f47, [%r79+4];
+mul.f32 %f48, %f47, %f47;
+div.rn.f32 %f49, %f48, %f44;
+sub.f32 %f50, %f46, %f49;
+setp.lt.f32 %p17, %f50, 0f00000000;
+selp.u32 %r82, 1, 0, %p17;
+add.s32 %r83, %r81, %r82;
+ld.shared.f32 %f51, [%r77+8];
+sub.f32 %f52, %f51, %f117;
+ld.shared.f32 %f53, [%r79+8];
+mul.f32 %f54, %f53, %f53;
+div.rn.f32 %f55, %f54, %f50;
+sub.f32 %f56, %f52, %f55;
+setp.lt.f32 %p18, %f56, 0f00000000;
+selp.u32 %r84, 1, 0, %p18;
+add.s32 %r85, %r83, %r84;
+ld.shared.f32 %f57, [%r77+12];
+sub.f32 %f58, %f57, %f117;
+ld.shared.f32 %f59, [%r79+12];
+mul.f32 %f60, %f59, %f59;
+div.rn.f32 %f61, %f60, %f56;
+sub.f32 %f119, %f58, %f61;
+setp.lt.f32 %p19, %f119, 0f00000000;
+selp.u32 %r86, 1, 0, %p19;
+add.s32 %r165, %r85, %r86;
+add.s32 %r163, %r163, 4;
+add.s32 %r161, %r161, -4;
+setp.ne.s32 %p20, %r161, 0;
+@%p20 bra LBB0_14;
+
+LBB0_15:
+setp.eq.s32 %p21, %r10, 0;
+@%p21 bra LBB0_19;
+
+setp.eq.s32 %p22, %r10, 1;
+shl.b32 %r87, %r163, 2;
+add.s32 %r28, %r59, %r87;
+ld.shared.f32 %f62, [%r28];
+sub.f32 %f63, %f62, %f117;
+add.s32 %r29, %r60, %r87;
+ld.shared.f32 %f64, [%r29];
+mul.f32 %f65, %f64, %f64;
+div.rn.f32 %f66, %f65, %f119;
+sub.f32 %f13, %f63, %f66;
+setp.lt.f32 %p23, %f13, 0f00000000;
+selp.u32 %r90, 1, 0, %p23;
+add.s32 %r165, %r165, %r90;
+@%p22 bra LBB0_19;
+
+setp.eq.s32 %p24, %r10, 2;
+ld.shared.f32 %f67, [%r28+4];
+sub.f32 %f68, %f67, %f117;
+ld.shared.f32 %f69, [%r29+4];
+mul.f32 %f70, %f69, %f69;
+div.rn.f32 %f71, %f70, %f13;
+sub.f32 %f14, %f68, %f71;
+setp.lt.f32 %p25, %f14, 0f00000000;
+selp.u32 %r91, 1, 0, %p25;
+add.s32 %r165, %r165, %r91;
+@%p24 bra LBB0_19;
+
+ld.shared.f32 %f72, [%r28+8];
+sub.f32 %f73, %f72, %f117;
+ld.shared.f32 %f74, [%r29+8];
+mul.f32 %f75, %f74, %f74;
+div.rn.f32 %f76, %f75, %f14;
+sub.f32 %f77, %f73, %f76;
+setp.lt.f32 %p26, %f77, 0f00000000;
+selp.u32 %r92, 1, 0, %p26;
+add.s32 %r165, %r165, %r92;
+
+LBB0_19:
+bar.sync 0;
+ld.shared.u32 %r94, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active];
+setp.ge.u32 %p27, %r1, %r94;
+@%p27 bra LBB0_35;
+
+setp.neu.f32 %p28, %f115, %f116;
+@%p28 bra LBB0_24;
+bra.uni LBB0_21;
+
+LBB0_24:
+setp.ne.s32 %p30, %r157, %r165;
+setp.ne.s32 %p31, %r165, %r158;
+and.pred %p32, %p31, %p30;
+abs.f32 %f15, %f117;
+@%p32 bra LBB0_32;
+bra.uni LBB0_25;
+
+LBB0_32:
+st.shared.u32 [%r5], %r157;
+st.shared.u32 [%r6], %r165;
+sub.f32 %f18, %f117, %f115;
+abs.f32 %f98, %f18;
+abs.f32 %f99, %f115;
+max.f32 %f100, %f99, %f15;
+mul.f32 %f101, %f100, %f25;
+cvt.f64.f32 %fd9, %f98;
+cvt.f64.f32 %fd10, %f101;
+max.f64 %fd12, %fd11, %fd10;
+setp.ltu.f64 %p42, %fd12, %fd9;
+mov.f32 %f120, %f115;
+mov.f32 %f121, %f117;
+@%p42 bra LBB0_34;
+
+setp.lt.f32 %p43, %f115, 0f00000000;
+selp.f32 %f102, 0fBF800000, 0f3F800000, %p43;
+setp.lt.f32 %p44, %f117, 0f00000000;
+selp.f32 %f103, 0fBF800000, 0f3F800000, %p44;
+setp.eq.f32 %p45, %f102, %f103;
+fma.rn.f32 %f104, %f18, 0f3F000000, %f115;
+add.f32 %f105, %f115, %f117;
+mul.f32 %f106, %f105, 0f3F000000;
+selp.f32 %f120, %f104, %f106, %p45;
+mov.f32 %f121, %f120;
+
+LBB0_34:
+st.shared.f32 [%r3], %f120;
+st.shared.f32 [%r4], %f121;
+mov.u32 %r167, 1;
+st.shared.u32 [%r2+4], %r167;
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk], %rs2;
+bra.uni LBB0_35;
+
+LBB0_21:
+sub.s32 %r34, %r158, %r157;
+setp.eq.s32 %p29, %r34, 1;
+@%p29 bra LBB0_23;
+bra.uni LBB0_22;
+
+LBB0_23:
+mov.u32 %r167, 0;
+st.shared.f32 [%r3], %f115;
+st.shared.f32 [%r4], %f116;
+st.shared.u32 [%r5], %r157;
+st.shared.u32 [%r6], %r158;
+st.shared.u32 [%r2+4], %r167;
+bra.uni LBB0_35;
+
+LBB0_25:
+mov.u32 %r167, 0;
+st.shared.u32 [%r2+4], %r167;
+st.shared.u32 [%r5], %r157;
+setp.eq.s32 %p33, %r157, %r165;
+@%p33 bra LBB0_29;
+bra.uni LBB0_26;
+
+LBB0_29:
+st.shared.u32 [%r6], %r158;
+sub.f32 %f17, %f116, %f117;
+abs.f32 %f88, %f17;
+abs.f32 %f89, %f116;
+max.f32 %f90, %f15, %f89;
+mul.f32 %f91, %f90, %f25;
+cvt.f64.f32 %fd5, %f88;
+cvt.f64.f32 %fd6, %f91;
+max.f64 %fd8, %fd11, %fd6;
+setp.ltu.f64 %p38, %fd8, %fd5;
+@%p38 bra LBB0_31;
+bra.uni LBB0_30;
+
+LBB0_31:
+st.shared.f32 [%r3], %f117;
+st.shared.f32 [%r4], %f116;
+mov.u32 %r165, %r157;
+bra.uni LBB0_35;
+
+LBB0_22:
+shr.u32 %r96, %r34, 1;
+mov.u32 %r167, 1;
+add.s32 %r165, %r96, %r157;
+st.shared.f32 [%r3], %f115;
+st.shared.f32 [%r4], %f116;
+st.shared.u32 [%r5], %r157;
+st.shared.u32 [%r6], %r165;
+st.shared.u32 [%r2+4], %r167;
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk], %rs2;
+mov.f32 %f117, %f115;
+bra.uni LBB0_35;
+
+LBB0_26:
+st.shared.u32 [%r6], %r165;
+sub.f32 %f16, %f117, %f115;
+abs.f32 %f78, %f16;
+abs.f32 %f79, %f115;
+max.f32 %f80, %f79, %f15;
+mul.f32 %f81, %f80, %f25;
+cvt.f64.f32 %fd1, %f78;
+cvt.f64.f32 %fd2, %f81;
+max.f64 %fd4, %fd11, %fd2;
+setp.ltu.f64 %p34, %fd4, %fd1;
+@%p34 bra LBB0_28;
+bra.uni LBB0_27;
+
+LBB0_28:
+st.shared.f32 [%r3], %f115;
+st.shared.f32 [%r4], %f117;
+bra.uni LBB0_35;
+
+LBB0_30:
+setp.lt.f32 %p39, %f117, 0f00000000;
+selp.f32 %f92, 0fBF800000, 0f3F800000, %p39;
+setp.lt.f32 %p40, %f116, 0f00000000;
+selp.f32 %f93, 0fBF800000, 0f3F800000, %p40;
+setp.eq.f32 %p41, %f92, %f93;
+fma.rn.f32 %f94, %f17, 0f3F000000, %f117;
+add.f32 %f95, %f116, %f117;
+mul.f32 %f96, %f95, 0f3F000000;
+selp.f32 %f97, %f94, %f96, %p41;
+st.shared.f32 [%r3], %f97;
+st.shared.f32 [%r4], %f97;
+mov.u32 %r165, %r157;
+bra.uni LBB0_35;
+
+LBB0_27:
+setp.lt.f32 %p35, %f115, 0f00000000;
+selp.f32 %f82, 0fBF800000, 0f3F800000, %p35;
+setp.lt.f32 %p36, %f117, 0f00000000;
+selp.f32 %f83, 0fBF800000, 0f3F800000, %p36;
+setp.eq.f32 %p37, %f82, %f83;
+fma.rn.f32 %f84, %f16, 0f3F000000, %f115;
+add.f32 %f85, %f115, %f117;
+mul.f32 %f86, %f85, 0f3F000000;
+selp.f32 %f87, %f84, %f86, %p37;
+st.shared.f32 [%r3], %f87;
+st.shared.f32 [%r4], %f87;
+
+LBB0_35:
+bar.sync 0;
+ld.shared.u16 %rs9, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk];
+and.b16 %rs10, %rs9, 1;
+setp.eq.b16 %p46, %rs10, 1;
+not.pred %p47, %p46;
+@%p47 bra LBB0_48;
+
+ld.shared.u32 %r38, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE22num_threads_compaction];
+shr.u32 %r168, %r38, 1;
+mov.u32 %r170, 1;
+setp.eq.s32 %p48, %r168, 0;
+@%p48 bra LBB0_41;
+
+mov.u32 %r170, 1;
+
+LBB0_38:
+bar.sync 0;
+setp.ge.u32 %p49, %r1, %r168;
+@%p49 bra LBB0_40;
+
+mul.lo.s32 %r106, %r170, %r7;
+add.s32 %r107, %r106, %r170;
+shl.b32 %r108, %r107, 2;
+add.s32 %r110, %r57, %r108;
+shl.b32 %r111, %r106, 2;
+add.s32 %r112, %r57, %r111;
+ld.shared.u32 %r113, [%r112];
+ld.shared.u32 %r114, [%r110];
+add.s32 %r115, %r113, %r114;
+st.shared.u32 [%r110], %r115;
+
+LBB0_40:
+shl.b32 %r170, %r170, 1;
+shr.s32 %r43, %r168, 1;
+setp.gt.s32 %p50, %r168, 1;
+mov.u32 %r168, %r43;
+@%p50 bra LBB0_38;
+
+LBB0_41:
+setp.lt.u32 %p51, %r38, 3;
+@%p51 bra LBB0_46;
+
+mov.u32 %r171, 2;
+
+LBB0_43:
+shr.u32 %r47, %r170, 1;
+bar.sync 0;
+add.s32 %r117, %r171, -1;
+setp.ge.u32 %p52, %r1, %r117;
+@%p52 bra LBB0_45;
+
+mul.lo.s32 %r118, %r47, %r8;
+shr.u32 %r119, %r170, 2;
+add.s32 %r120, %r119, %r118;
+shl.b32 %r121, %r120, 2;
+add.s32 %r123, %r57, %r121;
+shl.b32 %r124, %r118, 2;
+add.s32 %r125, %r57, %r124;
+ld.shared.u32 %r126, [%r125];
+ld.shared.u32 %r127, [%r123];
+add.s32 %r128, %r126, %r127;
+st.shared.u32 [%r123], %r128;
+
+LBB0_45:
+shl.b32 %r171, %r171, 1;
+setp.lt.u32 %p53, %r171, %r38;
+mov.u32 %r170, %r47;
+@%p53 bra LBB0_43;
+
+LBB0_46:
+bar.sync 0;
+ld.shared.u32 %r49, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active];
+setp.ge.u32 %p54, %r1, %r49;
+setp.eq.s32 %p55, %r167, 0;
+or.pred %p56, %p55, %p54;
+@%p56 bra LBB0_48;
+
+ld.shared.u32 %r129, [%r2];
+add.s32 %r130, %r129, %r49;
+shl.b32 %r131, %r130, 2;
+add.s32 %r133, %r59, %r131;
+st.shared.f32 [%r133], %f117;
+add.s32 %r135, %r60, %r131;
+st.shared.f32 [%r135], %f116;
+add.s32 %r137, %r61, %r131;
+st.shared.u32 [%r137], %r165;
+add.s32 %r139, %r62, %r131;
+st.shared.u32 [%r139], %r158;
+
+LBB0_48:
+bar.sync 0;
+@%p1 bra LBB0_52;
+
+ld.shared.u32 %r140, [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active];
+shl.b32 %r141, %r140, 2;
+add.s32 %r143, %r57, %r141;
+ld.shared.u32 %r144, [%r143];
+add.s32 %r173, %r144, %r140;
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE18num_threads_active], %r173;
+add.s32 %r145, %r173, -1;
+and.b32 %r146, %r145, %r173;
+setp.eq.s32 %p58, %r146, 0;
+@%p58 bra LBB0_51;
+
+cvt.rn.f32.s32 %f107, %r173;
+abs.f32 %f108, %f107;
+setp.lt.f32 %p59, %f108, 0f00800000;
+mul.f32 %f109, %f107, 0f4B800000;
+selp.f32 %f110, %f109, %f107, %p59;
+mov.b32 %r147, %f110;
+bfe.u32 %r148, %r147, 23, 8;
+setp.eq.f32 %p60, %f108, 0f00000000;
+setp.eq.s32 %p61, %r148, 255;
+selp.b32 %r149, -150, -126, %p59;
+add.s32 %r150, %r149, %r148;
+mov.u32 %r151, 1;
+shl.b32 %r152, %r151, %r150;
+selp.b32 %r153, 1, %r152, %p61;
+selp.b32 %r173, 1, %r153, %p60;
+
+LBB0_51:
+st.shared.u32 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE22num_threads_compaction], %r173;
+st.shared.u8 [_ZZ12bisectKernelPfS_jS_S_PjS0_ffjjfE20compact_second_chunk], %rs4;
+bra.uni LBB0_52;
+
+LBB0_53:
+bar.sync 0;
+@%p9 bra LBB0_55;
+
+ld.shared.f32 %f111, [%r3];
+shl.b64 %rd14, %rd1, 2;
+add.s64 %rd15, %rd4, %rd14;
+st.global.f32 [%rd15], %f111;
+ld.shared.u32 %r154, [%r5];
+add.s64 %rd16, %rd5, %rd14;
+st.global.u32 [%rd16], %r154;
+
+LBB0_55:
+ret;
+
+}
+
+
+Fatbin elf code:
+================
+arch = sm_80
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_80
+code version = [7,2]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.2
+.target sm_80
+.address_size 64
+
+
+
+
+Fatbin elf code:
+================
+arch = sm_80
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_80
+code version = [7,2]
+producer = <unknown>
+host = linux
+compile_size = 64bit
+compressed
+
+
+
+
+
+
+
+
+.version 7.2
+.target sm_80
+.address_size 64
+
+
+
+
+Fatbin elf code:
+================
+arch = sm_80
+code version = [1,7]
+producer = <unknown>
+host = linux
+compile_size = 64bit
